@@ -61,6 +61,24 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxarch, "BCM7335");
 #endif
 
+#if BOXMODEL_FORMULER3
+    /* Initial profile based on the F3 runtime inventory, 2026-11-02.
+     * Enable panel/CI/CEC/deep standby only after device-level validation.
+     * F3 is not a VU+ model: keep vendor-specific branches disabled.
+     */
+    caps.has_HDMI = 1;
+    caps.pip_devs = 0;
+    caps.can_pip = 0;
+    caps.can_cec = 0;
+    caps.can_shutdown = 0;
+    caps.can_cpufreq = 0;
+    caps.display_type = HW_DISPLAY_NONE;
+    strcpy(caps.boxmodel, "formuler3");
+    strcpy(caps.boxvendor, "Formuler");
+    strcpy(caps.boxname, "F3");
+    strcpy(caps.boxarch, "BCM7362");
+#endif
+
 	initialized = 1;
 	return &caps;
 }

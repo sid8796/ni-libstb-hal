@@ -102,7 +102,7 @@ AC_ARG_WITH(boxtype,
 AC_ARG_WITH(boxmodel,
 	AS_HELP_STRING([--with-boxmodel], [valid for generic: generic, raspi])
 AS_HELP_STRING([], [valid for armbox: hd60, hd61, multibox, multiboxse, hd51, bre2ze4k, h7, e4hdultra, protek4k, osmini4k, osmio4k, osmio4kplus, vusolo4k, vuduo4k, vuduo4kse, vuultimo4k, vuuno4k, vuuno4kse, vuzero4k])
-AS_HELP_STRING([], [valid for mipsbox: vuduo, vuduo2, osnino, osninoplus, osninopro]),
+AS_HELP_STRING([], [valid for mipsbox: formuler3, vuduo, vuduo2, osnino, osninoplus, osninopro]),
 	[case "${withval}" in
 		generic|raspi)
 			if test "$BOXTYPE" = "generic"; then
@@ -118,7 +118,7 @@ AS_HELP_STRING([], [valid for mipsbox: vuduo, vuduo2, osnino, osninoplus, osnino
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		vuduo|vuduo2|osnino|osninoplus|osninopro)
+		formuler3|vuduo|vuduo2|osnino|osninoplus|osninopro)
 			if test "$BOXTYPE" = "mipsbox"; then
 				BOXMODEL="$withval"
 			else
@@ -167,6 +167,7 @@ AM_CONDITIONAL(BOXMODEL_VUUNO4KSE, test "$BOXMODEL" = "vuuno4kse")
 AM_CONDITIONAL(BOXMODEL_VUZERO4K, test "$BOXMODEL" = "vuzero4k")
 
 # mipsbox
+AM_CONDITIONAL(BOXMODEL_FORMULER3, test "$BOXMODEL" = "formuler3")
 AM_CONDITIONAL(BOXMODEL_VUDUO, test "$BOXMODEL" = "vuduo")
 AM_CONDITIONAL(BOXMODEL_VUDUO2, test "$BOXMODEL" = "vuduo2")
 
@@ -232,6 +233,8 @@ elif test "$BOXMODEL" = "vuzero4k"; then
 	AC_DEFINE(BOXMODEL_VUZERO4K, 1, [vuzero4k])
 
 # mipsbox
+elif test "$BOXMODEL" = "formuler3"; then
+	AC_DEFINE(BOXMODEL_FORMULER3, 1, [Formuler F3 BCM7362])
 elif test "$BOXMODEL" = "vuduo"; then
 	AC_DEFINE(BOXMODEL_VUDUO, 1, [vuduo])
 elif test "$BOXMODEL" = "vuduo2"; then

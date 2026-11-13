@@ -64,14 +64,20 @@ hw_caps_t *get_hwcaps(void)
 #if BOXMODEL_FORMULER1 || BOXMODEL_FORMULER3 || BOXMODEL_FORMULER4 || BOXMODEL_FORMULER4TURBO
 	caps.can_shutdown = 1;
 	caps.has_CI = 1;
-	/* The four-digit front panel accepts ASCII on /dev/dbox/oled0. */
 	caps.has_HDMI = 1;
 	caps.pip_devs = 0;
 	caps.can_pip = 0;
+	strcpy(caps.boxvendor, "Formuler");
+
+#if BOXMODEL_FORMULER1
+	caps.display_type = HW_DISPLAY_LINE_TEXT;
+	caps.display_xres = 8;
+#else
+	/* The four-digit front panel accepts ASCII on /dev/dbox/oled0. */
 	caps.display_type = HW_DISPLAY_LED_NUM;
 	caps.display_xres = 4;
 	caps.display_has_colon = 1;
-	strcpy(caps.boxvendor, "Formuler");
+#endif
 
 #if BOXMODEL_FORMULER1
 	strcpy(caps.boxmodel, "formuler1");

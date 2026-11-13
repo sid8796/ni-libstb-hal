@@ -62,6 +62,7 @@ hw_caps_t *get_hwcaps(void)
 #endif
 
 #if BOXMODEL_FORMULER1 || BOXMODEL_FORMULER3 || BOXMODEL_FORMULER4 || BOXMODEL_FORMULER4TURBO
+	caps.can_shutdown = 1;
 	/* The four-digit front panel accepts ASCII on /dev/dbox/oled0. */
 	caps.has_HDMI = 1;
 	caps.pip_devs = 0;
@@ -76,7 +77,6 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxname, "F1");
 	strcpy(caps.boxarch, "BCM7356");
 #elif BOXMODEL_FORMULER3
-	caps.can_shutdown = 1;
 	strcpy(caps.boxmodel, "formuler3");
 	strcpy(caps.boxname, "F3");
 	strcpy(caps.boxarch, "BCM7362");

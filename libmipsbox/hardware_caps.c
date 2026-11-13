@@ -61,22 +61,33 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxarch, "BCM7335");
 #endif
 
-#if BOXMODEL_FORMULER3
-    /* Initial profile based on the F3 runtime inventory, 2026-11-02.
-     * Enable panel/CI/CEC/deep standby only after device-level validation.
-     * F3 is not a VU+ model: keep vendor-specific branches disabled.
-     */
-    caps.has_HDMI = 1;
-    caps.pip_devs = 0;
-    caps.can_pip = 0;
-    caps.can_cec = 0;
-    caps.can_shutdown = 0;
-    caps.can_cpufreq = 0;
-    caps.display_type = HW_DISPLAY_NONE;
-    strcpy(caps.boxmodel, "formuler3");
-    strcpy(caps.boxvendor, "Formuler");
-    strcpy(caps.boxname, "F3");
-    strcpy(caps.boxarch, "BCM7362");
+#if BOXMODEL_FORMULER1 || BOXMODEL_FORMULER3 || BOXMODEL_FORMULER4 || BOXMODEL_FORMULER4TURBO
+	/* The four-digit front panel accepts ASCII on /dev/dbox/oled0. */
+	caps.has_HDMI = 1;
+	caps.pip_devs = 0;
+	caps.can_pip = 0;
+	caps.display_type = HW_DISPLAY_LED_NUM;
+	caps.display_xres = 4;
+	caps.display_has_colon = 1;
+	strcpy(caps.boxvendor, "Formuler");
+
+#if BOXMODEL_FORMULER1
+	strcpy(caps.boxmodel, "formuler1");
+	strcpy(caps.boxname, "F1");
+	strcpy(caps.boxarch, "BCM7356");
+#elif BOXMODEL_FORMULER3
+	strcpy(caps.boxmodel, "formuler3");
+	strcpy(caps.boxname, "F3");
+	strcpy(caps.boxarch, "BCM7362");
+#elif BOXMODEL_FORMULER4
+	strcpy(caps.boxmodel, "formuler4");
+	strcpy(caps.boxname, "F4");
+	strcpy(caps.boxarch, "BCM7362");
+#elif BOXMODEL_FORMULER4TURBO
+	strcpy(caps.boxmodel, "formuler4turbo");
+	strcpy(caps.boxname, "F4 Turbo");
+	strcpy(caps.boxarch, "BCM73625");
+#endif
 #endif
 
 	initialized = 1;

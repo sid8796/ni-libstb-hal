@@ -84,6 +84,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxname, "F1");
 	strcpy(caps.boxarch, "BCM7356");
 #elif BOXMODEL_FORMULER3
+	caps.display_can_set_brightness = 1;
 	strcpy(caps.boxmodel, "formuler3");
 	strcpy(caps.boxname, "F3");
 	strcpy(caps.boxarch, "BCM7362");

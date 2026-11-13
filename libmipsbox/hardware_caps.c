@@ -63,6 +63,7 @@ hw_caps_t *get_hwcaps(void)
 
 #if BOXMODEL_FORMULER1 || BOXMODEL_FORMULER3 || BOXMODEL_FORMULER4 || BOXMODEL_FORMULER4TURBO
 	caps.can_shutdown = 1;
+	caps.has_CI = 1;
 	/* The four-digit front panel accepts ASCII on /dev/dbox/oled0. */
 	caps.has_HDMI = 1;
 	caps.pip_devs = 0;
